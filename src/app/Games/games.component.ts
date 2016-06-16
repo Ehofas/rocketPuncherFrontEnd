@@ -15,6 +15,7 @@ import {RouteParams, OnActivate, ComponentInstruction} from 'angular2/router';
       <!--<RightSide></RightSide>-->
     </div>
      <button type="submit" style="display: flex; margin:0 auto;" (click)="stopGame()">STOP GAME</button>
+     <button type="submit" style="display: flex; margin:0 auto;" (click)="revertLastScore()">REVERT</button>
   `,
   providers: [GameService, LeftComponent],
   directives:[LeftComponent, RightComponent],
@@ -89,13 +90,22 @@ export class GamesComponent {
     //console.log(this.gameService.stopGame());
     this.gameService.stopGame().subscribe(
       response => {
-        console.log(response)
-        console.log(["test"])
+        console.log(response);
+        console.log(["test"]);
         // start game
       },
       error => console.log(error)
     );
   }
+
+  revertLastScore(){
+    console.log('reverting last score');
+    this.gameService.revertScore(this.gameId).subscribe(
+      response => console.log("Success"),
+      error => console.log(error)
+    );
+  }
+
   asyncDataWithWebpack() {
 
   }

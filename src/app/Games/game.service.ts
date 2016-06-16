@@ -10,14 +10,19 @@ export class GameService {
 
   stopGame() {
     console.log('in stopGame');
-    return this.http.post("http://localhost:3002/games/abort/5762e7b0783f5314310d0186", "")
+    return this.http.post("http://192.168.1.74:5135/games/abort/5762e7b0783f5314310d0186", "")
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   getScore(gameId:any) {
     console.log('in updateScore');
-    return this.http.get("http://localhost:3002/games/" + gameId)
+    return this.http.get("http://192.168.1.74:5135/games/" + gameId)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+  revertScore(gameId: any){
+    return this.http.delete("http://192.168.1.74:5135/scores/last/" + gameId)
       .map(this.extractData)
       .catch(this.handleError);
   }
