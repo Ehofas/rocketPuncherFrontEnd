@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {GameService} from "./game.service";
-
-
+import {LeftComponent} from "./Players/left.component"
 
 @Component({
   selector: 'Games',
@@ -15,12 +14,12 @@ import {GameService} from "./game.service";
       <h3>
         patrick@AngularClass.com
       </h3>
-      <SideLeftComponent>loading...</SideLeftComponent>
-      <SideRightComponent>loading...</SideRightComponent>
+      <LeftSide>loading...</LeftSide>
+      <RightSide>loading...</RightSide>
     </div>
   `,
   providers: [GameService],
-  directives:[SideLeftComponent, SideRightComponent],
+  directives:[LeftComponent/*, RightComponent*/],
 })
 export class GamesComponent {
   games: any;
