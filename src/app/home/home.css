@@ -39,3 +39,11 @@
   flex-direction: row;
   justify-content:center;
 }
+.columnLayout{
+  display: flex;
+  flex-direction: column;
+}
+.qrButton{
+  margin-left:20%;
+  margin-right:20%;
+}
