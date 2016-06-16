@@ -10,8 +10,8 @@ import {RouteParams, OnActivate, ComponentInstruction} from 'angular2/router';
   template: `
     <h1 style="text-align: center">Game in progress</h1>
     <div style="display: flex; flex-direction: row; justify-content:space-between">
-      <LeftSide [value]="leftValue"></LeftSide>
-      <LeftSide [value]="rightValue"></LeftSide>
+      <LeftSide [value]="leftValue" [team]="leftTeam"></LeftSide>
+      <LeftSide [value]="rightValue" [team]="rightTeam"></LeftSide>
       <!--<RightSide></RightSide>-->
     </div>
      <button type="submit" style="display: flex; margin:0 auto;" (click)="stopGame()">STOP GAME</button>
@@ -23,6 +23,8 @@ export class GamesComponent {
   gameId: string;
   leftValue: any;
   rightValue: any;
+  leftTeam: string;
+  rightTeam: string;
   games: any;
   pointsIntervalRef: number;
   currentState: any = {
@@ -66,6 +68,8 @@ export class GamesComponent {
           if (response) {
             this.leftValue = this.currentState.scores.teams["1"].score;
             this.rightValue = this.currentState.scores.teams["2"].score;
+            this.leftTeam = this.currentState.teams["1"];
+            this.rightTeam = this.currentState.teams["2"];
           }
         },
         error => console.log(error)
