@@ -1,47 +1,47 @@
-import { Component } from '@angular/core';
-
-import { AppState } from '../app.service';
-import { Title } from './title';
-import { XLarge } from './x-large';
+import {Component} from '@angular/core';
+import {HomeService} from "./home.service";
 
 @Component({
-  // The selector is what angular internally uses
-  // for `document.querySelectorAll(selector)` in our index.html
-  // where, in this case, selector is the string 'home'
-  selector: 'home',  // <home></home>
-  // We need to tell Angular's Dependency Injection which providers are in our app.
-  providers: [
-    Title
-  ],
-  // We need to tell Angular's compiler which directives are in our template.
-  // Doing so will allow Angular to attach our behavior to an element
-  directives: [
-    XLarge
-  ],
-  // We need to tell Angular's compiler which custom pipes are in our template.
-  pipes: [ ],
-  // Our list of styles in our component. We may add more to compose many styles together
-  styles: [ require('./home.css') ],
-  // Every Angular template is first compiled by the browser before Angular runs it's compiler
-  template: require('./home.html')
+  selector: 'Home',
+  template: require('./home.html'),
+  providers: [HomeService]
 })
-export class Home {
-  // Set our default values
-  localState = { value: '' };
-  // TypeScript public modifiers
-  constructor(public appState: AppState, public title: Title) {
+export class HomeComponent {
+  gameId:string;
+  member1:string;
+  member2:string;
+  member3:string;
+  member4:string;
+  endScore:number;
 
+
+  constructor(private homeService:HomeService) {
+    this.member1 = "";
+    this.member2 = "";
+    this.member3 = "";
+    this.member4 = "";
+    this.endScore = 11;
+  }
+
+  // submitPlayer1(value) {
+  //   console.log('subitPlayer1', value);
+  //   this.memberName.set('value', value);
+  // }
+
+  startGame() {
+    var team1 = [this.member1, this.member2];
+    var team2 = [this.member3, this.member4];
+    this.homeService.startGame(this.endScore, team1, team2).subscribe(
+      response => this.gameId = response.gameId,
+      error => console.log(error));
   }
 
   ngOnInit() {
-    console.log('hello `Home` component');
-    // this.title.getData().subscribe(data => this.data = data);
+    console.log('hello `About` component');
   }
 
-  submitState(value) {
-    console.log('submitState', value);
-    this.appState.set('value', value);
-    this.localState.value = '';
+  asyncDataWithWebpack() {
+
   }
 
 }
