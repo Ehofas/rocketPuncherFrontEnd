@@ -44,7 +44,7 @@ export class HomeComponent {
 
   playSound() {
     var audio = new Audio();
-    audio.src = "http://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+    audio.src = "./assets/sounds/rockySoundtrack.mp3";
     audio.load();
     audio.play();
   }

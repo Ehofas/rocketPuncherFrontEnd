@@ -1,12 +1,9 @@
 <div class="rowLayout">
-  <div class="columnLayout">
     <input class="inputField"
            [value]="member1"
            (input)="member1 = $event.target.value"
            placeholder="Player 1"
            autofocus>
-    <button (click)="playSound()" class="qrButton">readQrCode</button>
-  </div>
   <input class="inputField"
          [value]="member2"
          (input)="member2 = $event.target.value"
