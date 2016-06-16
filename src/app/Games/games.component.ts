@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {GameService} from "./game.service";
 import {LeftComponent} from "./Players/left.component"
 import {RightComponent} from "./Players/right.component"
+import {RouteParams, OnActivate, ComponentInstruction} from 'angular2/router';
 
 
 @Component({
@@ -19,6 +20,7 @@ import {RightComponent} from "./Players/right.component"
   directives:[LeftComponent, RightComponent],
 })
 export class GamesComponent {
+  gameId: string;
   leftValue: any;
   rightValue: any;
   games: any;
@@ -48,7 +50,8 @@ export class GamesComponent {
     }
   };
 
-  constructor(private gameService: GameService, private leftComponent: LeftComponent) {
+  constructor(private gameService: GameService, params: RouteParams) {
+    this.gameId = params.get('gameId');
 
   }
 
@@ -57,7 +60,7 @@ export class GamesComponent {
 
     this.pointsIntervalRef = setInterval(() => {
 
-      this.gameService.getScore("57631d178fb25dbe1381e82d").subscribe(
+      this.gameService.getScore(this.gameId).subscribe(
         response => {
           this.currentState = response;
           if (response) {
