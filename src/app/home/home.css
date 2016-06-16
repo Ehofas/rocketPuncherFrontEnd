@@ -1,1 +1,18 @@
 /*styles for home content only*/
+.start-button{
+  display:flex;
+  margin-top:30px;
+  padding-left:30px;
+  padding-right:30px;
+  padding-top:15px;
+  padding-bottom:15px;
+}
+
+.register-button{
+  margin-top:30px;
+  align-content:center;
+  padding-left:30px;
+  padding-right:30px;
+  padding-top:15px;
+  padding-bottom:15px;
+}
