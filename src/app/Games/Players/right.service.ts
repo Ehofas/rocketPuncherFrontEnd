@@ -3,13 +3,12 @@ import {Http, Response} from "@angular/http";
 import {Observable} from "rxjs/Rx";
 
 @Injectable()
-export class GameService {
+export class RightService {
 
   constructor(private http: Http) {}
 
-  stopGame() {
-    console.log('in stopGame');
-    return this.http.post("http://localhost:3002/games/abort/5762e7b0783f5314310d0186", "")
+  getGames() {
+    return this.http.get("http://localhost:3002/users/userlist")
       .map(this.extractData)
       .catch(this.handleError);
   }

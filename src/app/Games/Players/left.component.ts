@@ -4,11 +4,12 @@ import {LeftService} from "./left.service";
 @Component({
   selector: 'LeftSide',
   template: `
-    <h1>Player left</h1>
+<div style="flex:100; flex-wrap: wrap">
+    <h1>Lina</h1>
     <div>
-      For hot module reloading run
-      <pre>npm run start:hmr</pre>
+    <h1 style="font-size:700%">11</h1>
     </div>
+  </div>
   `,
   providers: [LeftService]
 })
