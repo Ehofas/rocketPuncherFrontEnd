@@ -9,29 +9,72 @@ import {RightComponent} from "./Players/right.component"
   template: `
     <h1 style="text-align: center">Game in progress</h1>
     <div style="display: flex; flex-direction: row; justify-content:space-between">
-      <LeftSide></LeftSide>
-      <RightSide></RightSide>
+      <LeftSide [value]="leftValue"></LeftSide>
+      <LeftSide [value]="rightValue"></LeftSide>
+      <!--<RightSide></RightSide>-->
     </div>
-     <button type="submit" style="display: flex" (click)="stopGame()">STOP GAME</button>
+     <button type="submit" style="display: flex; margin:0 auto;" (click)="stopGame()">STOP GAME</button>
   `,
-  providers: [GameService],
+  providers: [GameService, LeftComponent],
   directives:[LeftComponent, RightComponent],
 })
 export class GamesComponent {
+  leftValue: any;
+  rightValue: any;
   games: any;
+  pointsIntervalRef: number;
+  currentState: any = {
+    "_id": "Unknown",
+    "status": "Unknown",
+    "teams": {
+      "1": [
+        "Unknown"
+      ],
+      "2": [
+        "Unknown"
+      ]
+    },
+    "deviceId": "Unknown",
+    "endScore": 11,
+    "scores": {
+      "teams": {
+        "1": {
+          "score": 0
+        },
+        "2": {
+          "score": 0
+        }
+      }
+    }
+  };
 
-  constructor(private gameService: GameService) {
+  constructor(private gameService: GameService, private leftComponent: LeftComponent) {
 
   }
 
   ngOnInit() {
     console.log('hello `About` component');
 
-    // this.gameService.stopGame().subscribe(
-    //   response => console.log(this.games = response),
-    //   error => console.log(error)
-    // );
+    this.pointsIntervalRef = setInterval(() => {
 
+      this.gameService.getScore("57631d178fb25dbe1381e82d").subscribe(
+        response => {
+          this.currentState = response;
+          if (response) {
+            this.leftValue = this.currentState.scores.teams["1"].score;
+            this.rightValue = this.currentState.scores.teams["2"].score;
+          }
+        },
+        error => console.log(error)
+      );
+
+    }, 1000);
+
+  }
+
+  // Cleanup
+  ngOnDestroy() {
+    clearInterval(this.pointsIntervalRef);
   }
 
   stopGame() {
