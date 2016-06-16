@@ -4,6 +4,7 @@ import {HomeService} from "./home.service";
 
 @Component({
   selector: 'Home',
+  styleUrls: ['./app/home/home.css'],
   template: require('./home.html'),
   providers: [HomeService]
 })
