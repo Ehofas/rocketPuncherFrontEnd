@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Router} from '@angular/router-deprecated';
 import {HomeService} from "./home.service";
 
 @Component({
@@ -15,7 +16,7 @@ export class HomeComponent {
   endScore:number;
 
 
-  constructor(private homeService:HomeService) {
+  constructor(private _router:Router, private homeService:HomeService) {
     this.member1 = "";
     this.member2 = "";
     this.member3 = "";
@@ -32,8 +33,12 @@ export class HomeComponent {
     var team1 = [this.member1, this.member2];
     var team2 = [this.member3, this.member4];
     this.homeService.startGame(this.endScore, team1, team2).subscribe(
-      response => this.gameId = response.gameId,
-      error => console.log(error));
+      response => {
+        this.gameId = response.gameId;
+        this._router.navigate(['Games', {gameId: this.gameId}]);
+      },
+      error => console.log(error)
+    );
   }
 
   ngOnInit() {

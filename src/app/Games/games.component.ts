@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {GameService} from "./game.service";
 import {LeftComponent} from "./Players/left.component"
 import {RightComponent} from "./Players/right.component"
+import {RouteParams, OnActivate, ComponentInstruction} from 'angular2/router';
 
 
 @Component({
@@ -20,7 +21,8 @@ import {RightComponent} from "./Players/right.component"
 export class GamesComponent {
   games: any;
 
-  constructor(private gameService: GameService) {
+  constructor(private gameService: GameService, params: RouteParams) {
+    console.log(params.get('gameId'));
 
   }
 

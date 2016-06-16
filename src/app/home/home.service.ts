@@ -27,8 +27,7 @@ export class HomeService {
   }
 
   private extractData(res:Response) {
-    let body = res.json();
-    return body.data || {};
+    return res.json() || {};
   }
 
   private handleError(error:any) {
