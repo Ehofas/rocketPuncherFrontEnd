@@ -41,14 +41,7 @@ export class HomeComponent {
       error => console.log(error)
     );
   }
-
-  playSound() {
-    var audio = new Audio();
-    audio.src = "./assets/sounds/rockySoundtrack.mp3";
-    audio.load();
-    audio.play();
-  }
-
+  
   ngOnInit() {
     console.log('hello `About` component');
   }
