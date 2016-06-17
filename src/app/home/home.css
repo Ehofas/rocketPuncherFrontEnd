@@ -20,6 +20,27 @@
   background-color: #4CAF50;
 }
 
+.shuffle-button {
+  display:flex;
+  margin-top:30px;
+  padding-left:30px;
+  padding-right:30px;
+  padding-top:15px;
+  padding-bottom:15px;
+  border-radius:3px;
+  border-color: white;
+  border:none;
+  background-color: #cad54c;
+  font-size: 12pt;
+  color: white;
+}
+.shuffle-button:hover{
+  background-color: #d0db55;
+}
+.shuffle-button:active{
+  background-color: #cad54c;
+}
+
 .register-button{
   margin-top:30px;
   align-content:center;

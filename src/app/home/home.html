@@ -1,25 +1,24 @@
 <div class="rowLayout">
     <input class="inputField"
-           [value]="member1"
-           (input)="member1 = $event.target.value"
+           [value]="members[0]"
+           (input)="members[0] = $event.target.value"
            placeholder="Player 1"
            autofocus>
   <input class="inputField"
-         style="border-radius:3px; border-color: darkgrey; text-align: center; font-size: 12pt"
-         [value]="member2"
-         (input)="member2 = $event.target.value"
-         placeholder="Player 2"
+         [value]="members[2]"
+         (input)="members[2] = $event.target.value"
+         placeholder="Player 3"
   >
 </div>
 <div class="rowLayout">
   <input class="inputField"
-         [value]="member3"
-         (input)="member3 = $event.target.value"
-         placeholder="Player 3"
+         [value]="members[1]"
+         (input)="members[1] = $event.target.value"
+         placeholder="Player 2"
   >
   <input class="inputField"
-         [value]="member4"
-         (input)="member4 = $event.target.value"
+         [value]="members[3]"
+         (input)="members[3] = $event.target.value"
          placeholder="Player 4"
   >
 </div>
@@ -31,7 +30,8 @@
   >
 </div>
 <div class="buttonLayout">
-  <button (click)="startGame()" class="start-button">START GAME</button>
+  <button (click)="startGame()" class="start-button">Start game</button>
+  <button (click)="shuffleTeams()" class="shuffle-button">Shuffle teams</button>
 </div>
 
 
