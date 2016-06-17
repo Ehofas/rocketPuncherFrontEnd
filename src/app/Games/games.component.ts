@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {GameService} from "./game.service";
 import {LeftComponent} from "./Players/left.component"
 import {RouteParams, OnActivate, ComponentInstruction} from 'angular2/router';
+import {Router} from '@angular/router-deprecated';
 
 
 @Component({
@@ -23,7 +24,7 @@ import {RouteParams, OnActivate, ComponentInstruction} from 'angular2/router';
      </div>
      <div style="display: flex; flex-direction: row; justify-content:space-between; margin-top:50px">
         <button type="submit" class="new-game-button" (click)="newGame()">NEW GAME</button>
-        <button type="submit" class="new-game-button" (click)="newGame()">RESET</button>
+        <button type="submit" class="new-game-button" (click)="restartGame()">RESTART</button>
 </div>
   `,
   providers: [GameService, LeftComponent],
@@ -64,7 +65,7 @@ export class GamesComponent {
     }
   };
 
-  constructor(private gameService:GameService, params:RouteParams) {
+  constructor(private _router:Router, private gameService:GameService, params:RouteParams) {
     this.gameId = params.get('gameId');
 
     this.gameInProgress = true;
@@ -137,6 +138,10 @@ export class GamesComponent {
     audio.src = "./assets/sounds/rockySoundtrack.mp3";
     audio.load();
     audio.play();
+  }
+  newGame() {
+    this.stopGame();
+    this._router.navigate(['Home']);
   }
 
   switchPlaces() {

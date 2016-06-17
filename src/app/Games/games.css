@@ -60,6 +60,9 @@
 .switch-button:active{
   background-color: #60bdc5;
 }
+.name-label{
+  text-align: center;
+}
 
 .new-game-button{
   display:inline-block;
