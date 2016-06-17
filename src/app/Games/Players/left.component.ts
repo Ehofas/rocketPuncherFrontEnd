@@ -7,7 +7,7 @@ import {LeftService} from "./left.service";
   template: `
 <div style="flex:100; flex-wrap: wrap">
     <section>
-      <h1 *ngFor="let name of team">{{name}}</h1>
+      <h1 style="text-align: center" *ngFor="let name of team">{{name}}</h1>
     </section>
     <div>
     <h1 style="font-size:700%">{{value}}</h1>
