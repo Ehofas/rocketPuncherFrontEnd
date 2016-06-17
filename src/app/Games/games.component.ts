@@ -7,6 +7,7 @@ import {RouteParams, OnActivate, ComponentInstruction} from 'angular2/router';
 
 @Component({
   selector: 'Games',
+  styleUrls: ['./app/Games/games.css'],
   template: `
     <h1 [hidden]="!gameInProgress" style="text-align: center">Game in progress</h1>
     <h1 [hidden]="gameInProgress" style="text-align: center; color:firebrick; font-size: 300%">Game Over!</h1>
@@ -14,9 +15,11 @@ import {RouteParams, OnActivate, ComponentInstruction} from 'angular2/router';
       <LeftSide [value]="leftValue" [team]="leftTeam"></LeftSide>
       <LeftSide [value]="rightValue" [team]="rightTeam"></LeftSide>
     </div>
-     <button type="submit" style="display: flex; margin:0 auto;" (click)="stopGame()">STOP GAME</button>
-     <button type="submit" style="display: flex; margin:0 auto;" (click)="revertLastScore()">REVERT</button>
-     <button type="submit" style="display: flex; margin:0 auto;" (click)="switchPlaces()"><- SWITCH -></button>
+    <div style="display: flex; flex-direction: row; justify-content:space-between">
+     <button type="submit" class="stop-button" (click)="stopGame()">STOP GAME</button><br>
+     <button type="submit" class="revert-button" (click)="revertLastScore()">REVERT</button><br>
+     <button type="submit" class="switch-button" (click)="switchPlaces()">SWITCH</button>
+     </div>
   `,
   providers: [GameService, LeftComponent],
   directives: [LeftComponent, RightComponent],

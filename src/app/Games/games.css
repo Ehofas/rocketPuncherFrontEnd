@@ -1,0 +1,62 @@
+.stop-button{
+  display:inline-block;
+  width: 160px;
+  height:50px;
+  border-radius:3px;
+  border-color: white;
+  border:none;
+  background-color: #4CAF50;
+  font-size: 12pt;
+  text-align: center;
+  color: white;
+  margin:0 auto;
+}
+.stop-button:hover{
+  background-color: #7cc961;
+}
+.stop-button:active{
+  background-color: #4CAF50;
+}
+
+.revert-button{
+  display:inline-block;
+  width: 160px;
+  height:50px;
+  margin-top: auto;
+  border-radius:3px;
+  border-color: white;
+  border:none;
+  background-color: #cad54c;
+  font-size: 12pt;
+  text-align: center;
+  color: white;
+  margin:0 auto;
+}
+.revert-button:hover{
+  background-color: #d0db55;
+}
+.revert-button:active{
+  background-color: #cad54c;
+}
+
+.switch-button{
+  display:inline-block;
+  width: 160px;
+  height:50px;
+  margin-top: auto;
+  border-radius:3px;
+  border-color: white;
+  border:none;
+  background-color: #60bdc5;
+  font-size: 12pt;
+  text-align: center;
+  align-content: center;
+  color: white;
+  margin:0 auto;
+}
+.switch-button:hover{
+  background-color: #6dcad2;
+}
+.switch-button:active{
+  background-color: #60bdc5;
+}

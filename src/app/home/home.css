@@ -6,6 +6,18 @@
   padding-right:30px;
   padding-top:15px;
   padding-bottom:15px;
+  border-radius:3px;
+  border-color: white;
+  border:none;
+  background-color: #4CAF50;
+  font-size: 12pt;
+  color: white;
+}
+.start-button:hover{
+  background-color: #7cc961;
+}
+.start-button:active{
+  background-color: #4CAF50;
 }
 
 .register-button{
@@ -27,6 +39,10 @@
   padding-top:10px;
   padding-left:5px;
   padding-right:5px;
+  border-radius:3px;
+  border-color: darkgrey;
+  text-align: center;
+  font-size: 12pt;
 }
 
 .rowLayout{
