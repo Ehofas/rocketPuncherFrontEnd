@@ -16,19 +16,21 @@ import {RouteParams, OnActivate, ComponentInstruction} from 'angular2/router';
     </div>
      <button type="submit" style="display: flex; margin:0 auto;" (click)="stopGame()">STOP GAME</button>
      <button type="submit" style="display: flex; margin:0 auto;" (click)="revertLastScore()">REVERT</button>
+     <button type="submit" style="display: flex; margin:0 auto;" (click)="switchPlaces()"><- SWITCH -></button>
   `,
   providers: [GameService, LeftComponent],
-  directives:[LeftComponent, RightComponent],
+  directives: [LeftComponent, RightComponent],
 })
 export class GamesComponent {
-  gameId: string;
-  leftValue: any;
-  rightValue: any;
-  leftTeam: string;
-  rightTeam: string;
-  games: any;
-  pointsIntervalRef: number;
-  currentState: any = {
+  normalPlayerOrder:boolean = true;
+  gameId:string;
+  leftValue:any;
+  rightValue:any;
+  leftTeam:string;
+  rightTeam:string;
+  games:any;
+  pointsIntervalRef:number;
+  currentState:any = {
     "_id": "Unknown",
     "status": "Unknown",
     "teams": {
@@ -53,7 +55,7 @@ export class GamesComponent {
     }
   };
 
-  constructor(private gameService: GameService, params: RouteParams) {
+  constructor(private gameService:GameService, params:RouteParams) {
     this.gameId = params.get('gameId');
 
   }
@@ -67,10 +69,11 @@ export class GamesComponent {
         response => {
           this.currentState = response;
           if (response) {
-            this.leftValue = this.currentState.scores.teams["1"].score;
-            this.rightValue = this.currentState.scores.teams["2"].score;
-            this.leftTeam = this.currentState.teams["1"];
-            this.rightTeam = this.currentState.teams["2"];
+            if(this.normalPlayerOrder) {
+              this.setTeamsInfo("1", "2");
+            } else {
+              this.setTeamsInfo("2", "1");
+            }
           }
         },
         error => console.log(error)
@@ -79,6 +82,13 @@ export class GamesComponent {
     }, 1000);
 
   }
+
+  private setTeamsInfo(leftTeam, rightTeam){
+      this.leftValue = this.currentState.scores.teams[leftTeam].score;
+      this.rightValue = this.currentState.scores.teams[rightTeam].score;
+      this.leftTeam = this.currentState.teams[leftTeam];
+      this.rightTeam = this.currentState.teams[rightTeam];
+    };
 
   // Cleanup
   ngOnDestroy() {
@@ -98,12 +108,16 @@ export class GamesComponent {
     );
   }
 
-  revertLastScore(){
+  revertLastScore() {
     console.log('reverting last score');
     this.gameService.revertScore(this.gameId).subscribe(
       response => console.log("Success"),
       error => console.log(error)
     );
+  }
+
+  switchPlaces() {
+    this.normalPlayerOrder = !this.normalPlayerOrder;
   }
 
   asyncDataWithWebpack() {
