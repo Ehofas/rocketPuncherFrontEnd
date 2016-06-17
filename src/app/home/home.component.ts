@@ -10,18 +10,12 @@ import {HomeService} from "./home.service";
 })
 export class HomeComponent {
   gameId:string;
-  member1:string;
-  member2:string;
-  member3:string;
-  member4:string;
+  members:any;
   endScore:number;
-
+  emptyMember = "";
 
   constructor(private _router:Router, private homeService:HomeService) {
-    this.member1 = "";
-    this.member2 = "";
-    this.member3 = "";
-    this.member4 = "";
+    this.members = [this.emptyMember, this.emptyMember, this.emptyMember, this.emptyMember];
     this.endScore = 11;
   }
 
@@ -31,8 +25,8 @@ export class HomeComponent {
   // }
 
   startGame() {
-    var team1 = [this.member1, this.member2];
-    var team2 = [this.member3, this.member4];
+    var team1 = [this.members[0], this.members[2]];
+    var team2 = [this.members[1], this.members[3]];
     this.homeService.startGame(this.endScore, team1, team2).subscribe(
       response => {
         this.gameId = response.gameId;
@@ -53,8 +47,19 @@ export class HomeComponent {
     console.log('hello `About` component');
   }
 
-  asyncDataWithWebpack() {
+  shuffleTeams() {
+    var allPresentPlayers = this.members.filter((player) => player != this.emptyMember);
 
+    var memberCountDifference = this.members.length - allPresentPlayers.length;
+    this.members.splice(0, this.members.length);
+
+    while (allPresentPlayers.length > 0) {
+      var random = Math.floor(Math.random() * allPresentPlayers.length);
+      var member = allPresentPlayers.splice(random, 1)[0];
+      this.members.push(member);
+    }
+    for (var i = 0; i < memberCountDifference; i++)
+      this.members.push(this.emptyMember)
   }
 
 }
