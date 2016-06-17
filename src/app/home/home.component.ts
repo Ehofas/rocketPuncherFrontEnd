@@ -19,14 +19,9 @@ export class HomeComponent {
     this.endScore = 11;
   }
 
-  // submitPlayer1(value) {
-  //   console.log('subitPlayer1', value);
-  //   this.memberName.set('value', value);
-  // }
-
   startGame() {
-    var team1 = [this.members[0], this.members[2]];
-    var team2 = [this.members[1], this.members[3]];
+    var team1 = [this.members[0], this.members[1]];
+    var team2 = [this.members[2], this.members[3]];
     this.homeService.startGame(this.endScore, team1, team2).subscribe(
       response => {
         this.gameId = response.gameId;
@@ -35,7 +30,7 @@ export class HomeComponent {
       error => console.log(error)
     );
   }
-  
+
   ngOnInit() {
     console.log('hello `About` component');
   }
