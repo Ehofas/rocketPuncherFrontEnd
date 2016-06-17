@@ -58,6 +58,8 @@ export class GamesComponent {
         response => {
           this.currentState = response;
           if (response) {
+            this.leftValue = this.currentState.scores.teams["1"].score;
+            this.rightValue = this.currentState.scores.teams["2"].score;
             if(this.normalPlayerOrder) {
               this.setTeamsInfo("1", "2");
             } else {
@@ -80,8 +82,8 @@ export class GamesComponent {
   }
 
   private setTeamsInfo(leftTeam, rightTeam){
-      this.leftValue = this.currentState.scores.teams[leftTeam].score;
-      this.rightValue = this.currentState.scores.teams[rightTeam].score;
+      /*this.leftValue = this.currentState.scores.teams[leftTeam].score;
+      this.rightValue = this.currentState.scores.teams[rightTeam].score;*/
       this.leftTeam = this.currentState.teams[leftTeam];
       this.rightTeam = this.currentState.teams[rightTeam];
     };
