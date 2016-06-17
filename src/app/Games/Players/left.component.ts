@@ -5,12 +5,12 @@ import {LeftService} from "./left.service";
 @Component({
   selector: 'LeftSide',
   template: `
-<div style="flex:100; flex-wrap: wrap">
+<div style="flex:100; flex-wrap: wrap;">
     <section>
-      <h1 *ngFor="let name of team">{{name}}</h1>
+      <h1 *ngFor="let name of team" style="margin: 20px">{{name}}</h1>
     </section>
     <div>
-    <h1 style="font-size:700%">{{value}}</h1>
+    <h1 style="font-size:900%; margin:20px">{{value}}</h1>
     </div>
   </div>
   `,

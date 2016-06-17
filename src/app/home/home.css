@@ -1,15 +1,14 @@
 /*styles for home content only*/
 .start-button{
-  display:flex;
+  display:inline-block;
+  width:160px;
+  height:50px;
   margin-top:30px;
-  padding-left:30px;
-  padding-right:30px;
-  padding-top:15px;
-  padding-bottom:15px;
   border-radius:3px;
   border-color: white;
   border:none;
   background-color: #4CAF50;
+  text-align: center;
   font-size: 12pt;
   color: white;
 }
@@ -21,16 +20,15 @@
 }
 
 .shuffle-button {
-  display:flex;
+  display:inline-block;
+  width:160px;
+  height:50px;
   margin-top:30px;
-  padding-left:30px;
-  padding-right:30px;
-  padding-top:15px;
-  padding-bottom:15px;
   border-radius:3px;
   border-color: white;
   border:none;
   background-color: #cad54c;
+  text-align: center;
   font-size: 12pt;
   color: white;
 }
