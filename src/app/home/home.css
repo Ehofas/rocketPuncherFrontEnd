@@ -11,6 +11,7 @@
   text-align: center;
   font-size: 12pt;
   color: white;
+  margin-right:5px;
 }
 .start-button:hover{
   background-color: #7cc961;
@@ -31,6 +32,7 @@
   text-align: center;
   font-size: 12pt;
   color: white;
+  margin-left:5px;
 }
 .shuffle-button:hover{
   background-color: #d0db55;

@@ -3,6 +3,7 @@ import {GameService} from "./game.service";
 import {LeftComponent} from "./Players/left.component"
 import {RouteParams, OnActivate, ComponentInstruction} from 'angular2/router';
 import {Router} from '@angular/router-deprecated';
+import {HomeService} from "../home/home.service";
 
 
 @Component({
@@ -27,7 +28,7 @@ import {Router} from '@angular/router-deprecated';
         <button type="submit" class="new-game-button" (click)="restartGame()">RESTART</button>
 </div>
   `,
-  providers: [GameService, LeftComponent],
+  providers: [GameService, LeftComponent, HomeService],
   directives: [LeftComponent],
 })
 export class GamesComponent {
@@ -40,32 +41,9 @@ export class GamesComponent {
   rightTeam:string;
   games:any;
   pointsIntervalRef:number;
-  currentState:any = {
-    "_id": "Unknown",
-    "status": "Unknown",
-    "teams": {
-      "1": [
-        "Unknown"
-      ],
-      "2": [
-        "Unknown"
-      ]
-    },
-    "deviceId": "Unknown",
-    "endScore": 11,
-    "scores": {
-      "teams": {
-        "1": {
-          "score": 0
-        },
-        "2": {
-          "score": 0
-        }
-      }
-    }
-  };
+  currentState:any;
 
-  constructor(private _router:Router, private gameService:GameService, params:RouteParams) {
+  constructor(private _router:Router, private gameService:GameService, private homeService:HomeService, params:RouteParams) {
     this.gameId = params.get('gameId');
 
     this.gameInProgress = true;
@@ -142,6 +120,18 @@ export class GamesComponent {
   newGame() {
     this.stopGame();
     this._router.navigate(['Home']);
+  }
+
+  restartGame() {
+    this.stopGame();
+    if (this.currentState != "") {
+      this.homeService.startGame(this.currentState.endScore, this.currentState.teams["1"], this.currentState.teams["2"]).subscribe(
+        response => this.gameId = response.gameId,
+        error => console.log(error)
+      );
+    }
+    /*this.homeService.startGame();1*/
+    console.log(this.currentState);
   }
 
   switchPlaces() {
