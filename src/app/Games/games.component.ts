@@ -10,7 +10,9 @@ import {RouteParams, OnActivate, ComponentInstruction} from 'angular2/router';
   styleUrls: ['./app/Games/games.css'],
   template: `
     <h1 [hidden]="!gameInProgress" style="text-align: center">Game in progress</h1>
+
     <h1 [hidden]="gameInProgress" style="text-align: center; color:firebrick; font-size: 300%">Game Over!</h1>
+    
     <div style="display: flex; flex-direction: row; justify-content:space-between">
       <LeftSide [value]="leftValue" [team]="leftTeam"></LeftSide>
       <LeftSide [value]="rightValue" [team]="rightTeam"></LeftSide>
@@ -20,6 +22,10 @@ import {RouteParams, OnActivate, ComponentInstruction} from 'angular2/router';
      <button type="submit" class="revert-button" (click)="revertLastScore()">REVERT</button><br>
      <button type="submit" class="switch-button" (click)="switchPlaces()">SWITCH</button>
      </div>
+     <div style="display: flex; flex-direction: row; justify-content:space-between; margin-top:50px">
+        <button type="submit" class="new-game-button" (click)="newGame()">NEW GAME</button>
+        <button type="submit" class="new-game-button" (click)="newGame()">RESET</button>
+</div>
   `,
   providers: [GameService, LeftComponent],
   directives: [LeftComponent, RightComponent],
