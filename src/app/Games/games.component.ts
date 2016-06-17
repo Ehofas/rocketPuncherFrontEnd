@@ -84,6 +84,7 @@ export class GamesComponent {
             if (this.currentState.status === "ENDED") {
               clearInterval(this.pointsIntervalRef);
               this.gameInProgress = false;
+              this.playSound();
             }
           }
         },
@@ -125,6 +126,12 @@ export class GamesComponent {
       response => console.log("Success"),
       error => console.log(error)
     );
+  }
+  playSound() {
+    var audio = new Audio();
+    audio.src = "./assets/sounds/rockySoundtrack.mp3";
+    audio.load();
+    audio.play();
   }
 
   switchPlaces() {
